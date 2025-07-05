@@ -1,2 +1,2 @@
 language = "bash"
-run = "cd frontend && npm install && npm run build && cd ../backend && npm install && node index.js"
+run = "npm install --prefix frontend && npm run build --prefix frontend && npm install --prefix backend && node backend/index.js"
