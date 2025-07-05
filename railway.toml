@@ -2,12 +2,8 @@
 
 [[service]]
 name = "backend"
-# The path to the service relative to the repository root
 path = "backend"
-# Railway will auto-detect Node.js and use "npm start" by default.
-# If you need specific commands, you can add them here:
-# buildCommand = "npm install"
-# startCommand = "node index.js"
+type = "nodejs" # Explicitly declare this as a Node.js service
 
 [service.variables]
 # Add any environment variables specific to your backend here
@@ -17,14 +13,10 @@ path = "backend"
 
 [[service]]
 name = "frontend"
-# The path to the service relative to the repository root
 path = "frontend"
-# For Vite, the build command is usually 'npm run build'
+type = "static" # Explicitly declare this as a static service
 buildCommand = "npm install && npm run build"
-# For static sites, Railway often serves the 'dist' folder automatically.
-# If you need a specific serve command (e.g., for a custom static server), define it here.
-# For Vite, the build output is typically in 'dist'.
-# Railway will serve this automatically if it's a static deployment.
+# For static sites, Railway automatically serves the 'dist' folder after the build.
 
 [service.variables]
 # This is crucial: The frontend needs to know the backend's URL.
