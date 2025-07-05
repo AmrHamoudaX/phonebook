@@ -1,0 +1,35 @@
+# railway.toml
+
+[[environments]]
+name = "production"
+
+[[environments.services]]
+name = "backend"
+path = "backend"
+# Railway will auto-detect Node.js and use "npm start" by default.
+# If you need specific commands, you can add them here:
+# buildCommand = "npm install"
+# startCommand = "node index.js"
+
+[environments.services.variables]
+# Add any environment variables specific to your backend here
+# For example, if you had a database URL:
+# DATABASE_URL = "your_database_connection_string"
+
+[[environments.services]]
+name = "frontend"
+path = "frontend"
+# For Vite, the build command is usually 'npm run build'
+buildCommand = "npm install && npm run build"
+# For static sites, Railway often serves the 'dist' folder automatically.
+# If you need a specific serve command (e.g., for a custom static server), define it here.
+# For Vite, the build output is typically in 'dist'.
+# Railway will serve this automatically if it's a static deployment.
+
+[environments.services.variables]
+# This is crucial: The frontend needs to know the backend's URL.
+# Railway automatically injects the URL of other services as environment variables.
+# The format is usually RAILWAY_SERVICE_NAME_URL.
+# For your frontend, you'll need to access this via process.env.REACT_APP_BACKEND_URL
+# (Vite uses VITE_ or REACT_APP_ prefix for client-side env vars)
+VITE_BACKEND_URL = "${{backend.RAILWAY_STATIC_URL}}" # Or RAILWAY_URL if not static
