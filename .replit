@@ -1,2 +1,18 @@
 language = "bash"
 run = "npm install --prefix frontend && npm run build --prefix frontend && npm install --prefix backend && node backend/index.js"
+
+[workflows]
+runButton = "Start App"
+
+[[workflows.workflow]]
+name = "Start App"
+author = 44598335
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd frontend && npm install && npm run build"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd ../backend && npm install && npm start"
