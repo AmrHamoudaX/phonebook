@@ -3,7 +3,7 @@
 [[service]]
 name = "backend"
 path = "backend"
-type = "nodejs" # Explicitly declare this as a Node.js service
+language = "Node" # Changed from type = "nodejs"
 
 [service.variables]
 # Add any environment variables specific to your backend here
@@ -14,7 +14,7 @@ type = "nodejs" # Explicitly declare this as a Node.js service
 [[service]]
 name = "frontend"
 path = "frontend"
-type = "static" # Explicitly declare this as a static service
+language = "Staticfile" # Changed from type = "static"
 buildCommand = "npm install && npm run build"
 # For static sites, Railway automatically serves the 'dist' folder after the build.
 
